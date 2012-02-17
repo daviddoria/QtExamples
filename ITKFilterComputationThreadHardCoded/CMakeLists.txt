@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 2.6)
+PROJECT(ITKFilterComputationThread)
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+
+FIND_PACKAGE(ITK REQUIRED)
+INCLUDE(${ITK_USE_FILE})
+
+FIND_PACKAGE(Qt4 REQUIRED)
+INCLUDE(${QT_USE_FILE})
+
+QT4_WRAP_UI(UISrcs Form.ui)
+QT4_WRAP_CPP(MOCSrcs Form.h ComputationThread.h)
+
+# Interactive
+ADD_EXECUTABLE(ITKFilterComputationThread
+ComputationThread.cpp
+Interactive.cpp 
+Form.cpp
+${UISrcs} ${MOCSrcs})
+TARGET_LINK_LIBRARIES(ITKFilterComputationThread ${QT_LIBRARIES} ${ITK_LIBRARIES})
