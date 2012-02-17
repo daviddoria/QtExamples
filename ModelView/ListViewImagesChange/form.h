@@ -15,7 +15,8 @@ public:
 
 public slots:
   void on_btnUpdate_clicked();
-  
+  void on_listView_clicked(const QModelIndex & index);
+
 private:
   MyListModel* model;
 };

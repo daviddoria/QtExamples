@@ -22,3 +22,9 @@ void Form::on_btnUpdate_clicked()
   std::cout << "Clicked update." << std::endl;
   this->model->AddImage();
 }
+
+
+void Form::on_listView_clicked(const QModelIndex & index)
+{
+  std::cout << index.row() << std::endl;
+}

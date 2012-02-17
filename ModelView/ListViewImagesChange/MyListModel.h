@@ -1,8 +1,11 @@
 #ifndef MyListModel_H
 #define MyListModel_H
 
+// QT
 #include <QAbstractListModel>
+#include <QItemSelection>
 
+// STL
 #include <vector>
 
 class MyListModel : public QAbstractListModel
@@ -24,6 +27,8 @@ public:
 private:
   unsigned int RowHeight;
   unsigned int NumberOfImages;
+
+  //void selectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
 };
 
 #endif

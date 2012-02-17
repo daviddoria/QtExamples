@@ -19,6 +19,8 @@
 #include "PixmapDelegate.h"
 
 #include <QPainter>
+#include <QMetaEnum>
+#include <QDebug>
 
 #include <iostream>
 
@@ -27,15 +29,6 @@ PixmapDelegate::PixmapDelegate() : Padding(4)
 
 }
 
-// Works, but stretches image to fill column.
-// void PixmapDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-// {
-//   QPixmap pixmap = index.data(Qt::DisplayRole).value<QPixmap>();
-// 
-//   QRect rect = option.rect;
-//   painter->drawPixmap(rect, pixmap, pixmap.rect());
-// }
-
 void PixmapDelegate::SetPadding(const unsigned int padding)
 {
   this->Padding = padding;
@@ -43,10 +36,11 @@ void PixmapDelegate::SetPadding(const unsigned int padding)
 
 void PixmapDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+  QStyledItemDelegate::paint(painter, option, index);
+  
   QPixmap pixmap = index.data(Qt::DisplayRole).value<QPixmap>();
 
   QRect rect = option.rect;
-  //rect.adjust(rect.width()/3, 0, -rect.width()/3, 0);
 
   unsigned int originalWidth = rect.width();
   unsigned int originalHeight = rect.height();

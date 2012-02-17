@@ -9,19 +9,20 @@ Form::Form(QWidget *parent)
     : QMainWindow(parent)
 {
   setupUi(this);
-  std::cout << "Current path: " << QDir::currentPath().toStdString() << std::endl;
-  
-  this->model = new QStringListModel;
-  
-  this->listView->setModel(model);
 
-  this->lblPath->setText(QDir::currentPath());
-  this->lblFile->setText(listView->currentIndex().data(QFileSystemModel::FilePathRole).toString());
+  this->model = new QStringListModel;
+  QStringList stringList;
+  stringList.append("test0");
+  stringList.append("test1");
+  stringList.append("test2");
+  this->model->setStringList(stringList);
+
+  this->listView->setModel(model);
 
 }
 
-
 void Form::on_listView_clicked(const QModelIndex & index)
 {
-  QModelIndexList indexList = this->listView->selectedIndexes();
+  std::cout << index.row() << std::endl;
+  //QModelIndexList indexList = this->listView->selectedIndexes();
 }
